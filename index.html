@@ -13,7 +13,7 @@
 <body>
   <h2>Faith & Culture Ads Advisor</h2>
   <div id="chat"></div>
-  <input id="message" placeholder="https://faith-and-culture-ads-assistant.onrender.com" style="width:80%">
+  <input id="message" placeholder="" style="width:80%">
   <button onclick="send()">Send</button>
 
   <script>
@@ -35,7 +35,7 @@
 
       document.getElementById("message").value = "";
 
-      const res = await fetch("YOUR_BACKEND_URL/chat", {
+      const res = await fetch("https://faith-and-culture-ads-assistant-1.onrender.com/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: msg, history })
