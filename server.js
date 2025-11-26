@@ -1,10 +1,15 @@
 import express from "express";
 import cors from "cors";
 import OpenAI from "openai";
+import path from "path";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Serve the frontend
+const __dirname = path.resolve();
+app.use(express.static(__dirname)); // Makes index.html available
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
@@ -33,6 +38,11 @@ app.post("/chat", async (req, res) => {
   res.json({
     reply: completion.choices[0].message.content
   });
+});
+
+// Route for homepage
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.listen(3000, () => {
